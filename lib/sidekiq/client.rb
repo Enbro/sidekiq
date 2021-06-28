@@ -211,8 +211,12 @@ module Sidekiq
     end
 
     def process_single(worker_class, item)
+      Sidekiq.logger.info("debug === worker_class #{worker_class.inspect}")
+      Sidekiq.logger.info("debug === item #{item.inspect}")
       queue = item['queue']
 
+      Sidekiq.logger.info("debug === queue #{queue.inspect}")
+      Sidekiq.logger.info("debug === redis_pool #{@redis_pool}")
       middleware.invoke(worker_class, item, queue, @redis_pool) do
         item
       end
