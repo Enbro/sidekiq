@@ -70,6 +70,9 @@ module Sidekiq
       normed = normalize_item(item)
       payload = process_single(item['class'], normed)
 
+      Sidekiq.logger.info("debug === normed #{normed.inspect}")
+      Sidekiq.logger.info("debug === payload #{payload}")
+
       if payload
         raw_push([payload])
         payload['jid']
