@@ -71,7 +71,8 @@ module Sidekiq
       payload = process_single(item['class'], normed)
 
       Sidekiq.logger.info("debug === normed #{normed.inspect}")
-      Sidekiq.logger.info("debug === payload #{payload}")
+      Sidekiq.logger.info("debug === payload #{payload.inspect}")
+      Sidekiq.logger.info("debug === item #{item.inspect}")
 
       if payload
         raw_push([payload])
